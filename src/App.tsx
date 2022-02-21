@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './pages/App.css'
+import Navibar from "./component/navbar/Navibar";
+import AppRouter from "./component/router/AppRouter";
+import {useAction} from "./hooks/useAction";
+import {useTypedSelector} from "./hooks/useTypedSelector";
+import {Layout} from "antd";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const product = useTypedSelector(state => state.products)
+    const {setAddProduct} = useAction()
+    if (product.products.length === 0) {
+        setAddProduct()
+    } //  Request for product lists
+    return (
+        <div className="App">
+            <Layout>
+                    <Navibar/>
+                <Layout.Content>
+                    <AppRouter/>
+                </Layout.Content>
+            </Layout>
+        </div>
+    );
 }
 
 export default App;
