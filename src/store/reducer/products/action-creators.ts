@@ -12,7 +12,7 @@ export const ProductsActionCreators = {
             setTimeout(async () => {
                 const response = await axios.get<IProduct[]>('./product.json');
                 dispatch(ProductsActionCreators.SetProduct(response.data))
-                // localStorage.setItem('products',JSON.stringify(response.data))
+                localStorage.setItem('products',JSON.stringify(response.data))
             },1000)
         }catch(e) {
             console.log(e)

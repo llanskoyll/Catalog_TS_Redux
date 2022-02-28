@@ -3,7 +3,7 @@ export interface IProduct {
     name: string,
     description: string,
     genre: string,
-    stars: number,
+    star: number,
     downloads: number,
     price: number,
     url: string

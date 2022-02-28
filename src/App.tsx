@@ -16,12 +16,8 @@ function App() {
     } //  Request for product lists
     return (
         <div className="App">
-            <Layout>
-                    <Navibar/>
-                <Layout.Content>
-                    <AppRouter/>
-                </Layout.Content>
-            </Layout>
+                <Navibar/>
+                <AppRouter/>
         </div>
     );
 }

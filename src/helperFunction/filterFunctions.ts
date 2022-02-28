@@ -11,3 +11,13 @@ export const MostDownload = ():IProduct[] => {
     }
     return stack
 }
+export const MostRating = ():IProduct[] => {
+    const array = getArrayProduct().sort((a:any,b:any) => a.star > b.star ? -1 : 1)
+    const stack: IProduct[] = []
+    for (let i = 0; i < array.length; i++) {
+        if(stack.length < 3) {
+            stack.push(array[i])
+        }
+    }
+    return stack
+}

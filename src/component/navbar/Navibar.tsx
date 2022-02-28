@@ -1,10 +1,9 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom'
+import {NavLink, useHistory} from 'react-router-dom'
 import './Navibar.css'
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useAction} from "../../hooks/useAction";
 import {Menu} from "antd";
-import {Layout} from "antd";
 import Sider from "antd/lib/layout/Sider";
 
 const Navibar: React.FunctionComponent = () => {
@@ -16,32 +15,53 @@ const Navibar: React.FunctionComponent = () => {
     const Logout = (status: boolean) => {
         setIsAuth(status)
     }
-    console.log(isAuth)
+
     return (
-            <Sider
-                style={{
-                    overflow: 'auto',
-                    height: '100vh',
-                    position: 'fixed',
-                    left: 0,
-                    top: 0,
-                    bottom: 0,
-                }}
-            >
-                <div className="logo" />
-                <Menu theme="dark" mode="inline">
+        <Sider
+            style={{
+                overflow: 'auto',
+                height: '100vh',
+                position: 'fixed',
+                left: 0,
+                top: 0,
+                bottom: 0,
+            }}
+        >
+            <div className="logo"/>
+            <Menu theme="dark" mode="inline">
                 {isAuth
                     ?
-                    <Menu.Item key="1">
-                        nav 1
-                    </Menu.Item>
+                    <>
+                        <Menu.Item key="1">
+                            <NavLink to="/">Главная</NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="2">
+                            <NavLink to="/catalog">Каталог</NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="3">
+                            <NavLink to='/profile'>Профиль</NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="4">
+                            <NavLink to = "/login" onClick = {() => Logout(false)}>
+                                Выйти
+                            </NavLink>
+                        </Menu.Item>
+                    </>
                     :
-                    <Menu.Item key="1">
-                        nav 1
-                    </Menu.Item>
+                    <>
+                        <Menu.Item key="1">
+                            <NavLink to="/">Главная</NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="2">
+                            <NavLink to="/catalog">Каталог</NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="3">
+                            <NavLink to='/login'>Войти</NavLink>
+                        </Menu.Item>
+                    </>
                 }
-                </Menu>
-            </Sider>
+            </Menu>
+        </Sider>
     );
 };
 
